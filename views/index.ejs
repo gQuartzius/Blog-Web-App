@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 display-4">Blog</h1>
+        <div class="posts-container">
+        <% if (posts.length > 0) { %>
+            <% posts.forEach(post => { %>
+                <div class="card mb-4 shadow-sm post-card">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= post.title %></h5>
+                        <p class="card-text"><%= post.content.substring(0, 150) %>...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                           <div>
+                              <a href="/post/<%= post.id %>" class="btn btn-link ps-0">Read More</a>
+                           </div>
+                            <div>
+                              <a href="/edit/<%= post.id %>" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-1"></i> Edit</a>
+                               <a href="/delete/<%= post.id %>" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt me-1"></i> Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+            <% } else { %>
+              <p class="text-center">No posts available at the moment.</p>
+          <% } %>
+        </div>
+
+          <div class="text-center mt-4">
+              <a href="/create" class="btn btn-success btn-lg"><i class="fas fa-plus me-1"></i> Create a New Post</a>
+          </div>
+
+    </div>
+<%- include('partials/footer') %>
